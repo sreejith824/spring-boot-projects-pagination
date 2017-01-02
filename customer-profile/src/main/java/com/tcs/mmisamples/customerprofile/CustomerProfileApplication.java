@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * Created by SSasidharan on 2016/12/14.
+ * Bootstrap class for Spring boot.
  */
 
 @EnableJpaRepositories

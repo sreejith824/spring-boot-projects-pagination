@@ -1,7 +1,6 @@
 package com.tcs.mmisamples.customerprofile.service.impl;
 
 import com.tcs.mmisamples.customerprofile.dao.CustomerProfilePaginationRepository;
-import com.tcs.mmisamples.customerprofile.dao.CustomerProfileRepository;
 import com.tcs.mmisamples.customerprofile.domain.CustomerProfile;
 import com.tcs.mmisamples.customerprofile.service.CustomerProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +13,10 @@ import java.util.Date;
 
 /**
  * Created by SSasidharan on 2016/12/26.
+ * Spring Service implementation class for Customer profile module.
  */
 @Service
 public class CustomerProfileServiceImpl implements CustomerProfileService {
-
-    @Autowired
-    CustomerProfileRepository customerProfileRepository;
 
     @Autowired
     CustomerProfilePaginationRepository customerProfilePaginationRepository;
@@ -31,20 +28,22 @@ public class CustomerProfileServiceImpl implements CustomerProfileService {
     @PostConstruct
     public void loadData() {
         CustomerProfile customerProfile = null;
-        for (int i=0 ; i < 100; i++) {
-            customerProfile = new CustomerProfile("Test : " + i%5, ((Integer)i).toString());
+        for (int i=0 ; i < 1000; i++) {
+            customerProfile = new CustomerProfile("Test : " + i, ((Integer)i).toString());
             customerProfile.setProduct("Product : " + i%5);
             customerProfile.setStartDate(new Date());
             saveCustomerProfile(customerProfile);
         }
     }
 
-    public Iterable<CustomerProfile> findAllCustomerProfiles() {
-        return customerProfileRepository.findAll();
+    @Override
+    public Iterable<CustomerProfile> findAllCustomerProfiles(Pageable pageable) {
+        return customerProfilePaginationRepository.findAll(pageable);
     }
 
+    @Override
     public CustomerProfile saveCustomerProfile(CustomerProfile customerProfile) {
-        return customerProfileRepository.save(customerProfile);
+        return customerProfilePaginationRepository.save(customerProfile);
     }
 
     @Override

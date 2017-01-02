@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 
 /**
  * Created by SSasidharan on 2016/12/26.
+ * Data access layer (Repository) interface with Pagination features.
  */
+
 @Repository
 public interface CustomerProfilePaginationRepository extends PagingAndSortingRepository<CustomerProfile, Integer> {
     Page<CustomerProfile> findCustomerProfileByName(String name, Pageable pageable);
