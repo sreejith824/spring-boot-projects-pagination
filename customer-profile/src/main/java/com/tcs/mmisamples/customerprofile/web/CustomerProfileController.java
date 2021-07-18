@@ -1,11 +1,15 @@
 package com.tcs.mmisamples.customerprofile.web;
 
+import com.tcs.mmisamples.customerprofile.domain.Account;
+import com.tcs.mmisamples.customerprofile.domain.AccountDetails;
 import com.tcs.mmisamples.customerprofile.domain.CustomerProfile;
 import com.tcs.mmisamples.customerprofile.service.CustomerProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by SSasidharan on 2016/12/26.
@@ -52,4 +56,18 @@ public class CustomerProfileController {
         CustomerProfile response = customerProfileService.saveCustomerProfile(customerProfile);
         return response;
     }
+
+    @RequestMapping(value="/account", method = {RequestMethod.GET}, produces = "application/json")
+    Iterable<Account> getAllAccounts() {
+        return customerProfileService.findAllAccounts();
+    }
+
+
+    @RequestMapping(value="/{customerId}/account", method = {RequestMethod.GET}, produces = "application/json")
+    Iterable<Account> getAllAccounts(@PathVariable (value = "customerId") String customerId) {
+        return customerProfileService.findAccountsForCustomer(Integer.valueOf(customerId));
+    }
+
+
+
 }

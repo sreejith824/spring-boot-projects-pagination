@@ -16,29 +16,27 @@ public class CustomerProfile {
     private String name;
 
     @Column(nullable = false)
-    private String product;
+    private int age;
 
-
-
-    @Column(nullable = false)
-    private Date startDate;
-
-
-    @Column(nullable = false)
-    private String age;
+    @Column
+    private String email;
 
 
 
    @Id
    @GeneratedValue
-    private  int id;
+    private  int customerId;
 
     protected CustomerProfile() {
     }
 
-    public CustomerProfile(String name, String age) {
+    public CustomerProfile(String name, int age) {
         this.name = name;
         this.age = age;
+    }
+
+    public CustomerProfile(int id) {
+        this.customerId = id;
     }
 
     public String getName() {
@@ -49,35 +47,27 @@ public class CustomerProfile {
         this.name = name;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public int getId() {
-        return id;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
-    public String getProduct() {
-        return product;
+    public String getEmail() {
+        return email;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

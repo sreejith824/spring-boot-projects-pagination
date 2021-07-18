@@ -1,9 +1,14 @@
 package com.tcs.mmisamples.customerprofile.service;
 
+import com.tcs.mmisamples.customerprofile.domain.Account;
+import com.tcs.mmisamples.customerprofile.domain.AccountDetails;
 import com.tcs.mmisamples.customerprofile.domain.CustomerProfile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by SSasidharan on 2016/12/26.
@@ -32,5 +37,13 @@ public interface CustomerProfileService {
      * @return
      */
     Page<CustomerProfile> findCustomerProfileByName(String name, Pageable pageable);
+
+    Iterable<Account> findAllAccounts();
+
+    Iterable<Account> findAccountsForCustomer(int customerId);
+
+    List<AccountDetails> findAccountDetails(int customerId);
+
+    List<AccountDetails> findAccountDetailsSearch(Optional<String> name, Optional<String> status, Optional<String> type);
 
 }
